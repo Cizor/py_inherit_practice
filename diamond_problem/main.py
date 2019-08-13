@@ -1,23 +1,32 @@
-from diamond_problem.PayrollSystem import PayrollSystem
-from diamond_problem.Positions import *
-from diamond_problem.ProductivitySystem import ProductivitySystem
-'''
-s = SalaryEmployee('SID', 'SNAME', 500)
-h = HourlyEmployee('HID', 'HNAME', 13, 400)
-c = CommissionSalaryEmployee('CNAME', 'CID', 500, 700)
+"""Main Functions"""
 
-pr = PayrollSystem.calculate_payroll([s, h, c])
-'''
-m = Manager('MID', 'MNAME', 6000)
-sec = Secretary('SECID', 'SECNAME', 3000)
-salesp = SalesPerson('SALESNAME', 'SALESID', 4000, 1500)
-facwoeker = FactoryWorker('FACID', 'FACNAME', 78, 300)
-temp = TemporarySecretary('TEMPID', 'TEMPNAME', 4000, 30)
+from diamond_problem.payroll_system import PayrollSystem
+from diamond_problem.positions import (
+    Manager,
+    Secretary,
+    SalesPerson,
+    FactoryWorker,
+    TemporarySecretary
+)
+from diamond_problem.productivity_system import ProductivitySystem
 
-employees = [m, sec, salesp, facwoeker, temp]
 
-prod_system = ProductivitySystem()
-prod_system.track(employees, 20)
+def main_call():
+    """Main logic"""
+    man = Manager('MID', 'MNAME', 6000)
+    sec = Secretary('SECID', 'SECNAME', 3000)
+    salesp = SalesPerson('SALESNAME', 'SALESID', 4000, 1500)
+    facwoeker = FactoryWorker('FACID', 'FACNAME', 78, 300)
+    temp = TemporarySecretary('TEMPID', 'TEMPNAME', 4000, 30)
 
-pay_system = PayrollSystem()
-pay_system.calculate_payroll(employees)
+    employees = [man, sec, salesp, facwoeker, temp]
+
+    prod_system = ProductivitySystem()
+    prod_system.track(employees, 20)
+
+    pay_system = PayrollSystem()
+    pay_system.calculate_payroll(employees)
+
+
+if __name__ == '__main__':
+    main_call()
